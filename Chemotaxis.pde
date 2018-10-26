@@ -1,89 +1,32 @@
- //declare bacteria variables here  
- /*PImage photo; 
- void setup()   
- {     
- 	size
- 	background(0,0,0);
- 	photo =loadImage("Bijuudama");
- 	//1.774
- 	//initialize bacteria variables here   
- }   
- void draw()   
- {    
- 	image(photo, 0, 0);
- 	ellipse(x, y, width, height);
- 	//move and show the bacteria   
- }  
- class Bacteria    
- {     
- 	int hor;
- 	int ver;
- 	color col=color(255, 255, 255);//lots of java! 
- }
-
-int radius=0;
-void setup()
-{
-	size
- 	background(0,0,0);
- 	photo =loadImage("Bijuudama");
-}
-void
-class chakra
-{
-	int xPo=0, yPo=0, the, spe=0, size;
-	color type=color(0, 0, 0);
-	chakra()
-	{
-		if((int)(Math.random()*5)==1)
-		{
-			type=color(255, 255, 255);
-		}
-		the=radians((int)(Math.random()*359));
-		size=(int)(Math.random()*25);
-
-	}
-		myX = (int)random(width);
-	    myY = (int)random(width);
-	    AX = (int)random(width);
-	    AY = (int)random(width);
-	    myColor = (int)(Math.random()*105+100);
-	    mySize = 3+(int)(Math.random()*25);
-	    Asteroid = 40+(int)(Math.random()*30);
-	    myCA =(int)(Math.random()*35+100);
-	    b =(int)(Math.random()*80+150);
-}*/
  Planets[] holey;
 BlackHole Holed = new BlackHole();
 dong[] ast;
 int radius = (int)(Math.random()*100)+50;;
 int S = 0;
 int count = 0;
-int white = (int)(Math.random()*201);
-int black = (int)(Math.random()*801);
+int blue = (int)(Math.random()*10)+1;
+int gray = (int)(Math.random()*500)+200;
+PImage bg;
 void setup()
 {
-  size(900, 900);
-  photo =loadImage("Bijuudama");
-  holey = new Planets[black];
-  ast = new dong[white];
-
+  holey = new Planets[gray];
+  ast = new dong[blue];
   for (int i=0; i < holey.length; i++)
     holey[i] = new Planets();
 
   for (int i=0; i < ast.length; i++)
     ast[i] = new dong();
+  size(900, 900);
+  bg=loadImage("Bijuudama.jpg");
 }
 
 void draw()
 {
-  image(photo, 0, 0);
-
+  background(bg);
 
   for (int k = 0; k < holey.length; k ++)
   {
     holey[k].show();
-    holey[k].vibrate();
   }
  
 
@@ -110,6 +53,10 @@ void draw()
     }
   }
 
+  Holed.show();
+}
+
+
 class Planets
 {
   float myX, myY, mySize, distR, distX, distY, Asteroid, myCA, AX, AY, AR, ADX, ADY, b ;
@@ -120,19 +67,12 @@ class Planets
     myY = (int)random(width);
     AX = (int)random(width);
     AY = (int)random(width);
-    myColor = (int)(Math.random()*105+100);
     mySize = 3+(int)(Math.random()*25);
     Asteroid = 40+(int)(Math.random()*30);
     myCA =(int)(Math.random()*35+100);
     b =(int)(Math.random()*80+150);
   }
-void vibrate()
-{
-    if (distR > radius*2 ) {
-      myX = myX + 2*(float)Math.random()-0.99;
-      myY = myY + 2*(float)Math.random()-0.99;
-    }
-}
+
   void walk()
   {
     if (myX <= 450 && distR < radius*2 && distR > radius*1.2) {
@@ -172,7 +112,12 @@ void vibrate()
   }
   void show()
   {
-    fill(myColor);
+    if(mySize<21)
+    {
+    	fill(255, 255, 255);
+    }else {
+    	fill(0);
+    }
     ellipse(myX, myY, mySize, mySize);
   }
   void distance() {
@@ -189,21 +134,21 @@ class BlackHole
 {
   BlackHole()
   {
-    radius = 100;
+    radius = 1;
   }
   void show() {
     fill(0);
         if (radius > 499)
-    fill((int)(Math.random()*125),(int)(Math.random()*125),(int)(Math.random()*125));
+    fill(0);
     ellipse(450, 450, radius, radius);
   }
   void field() {
     fill(30, 30, 30, 120);
-    ellipse(450, 450, radius*4, radius*4);
+    ellipse(450, 450, radius, radius);
   }
 }
 
-void mousePressed(){
+void mousePressed() {
   S = 1;
 }
 
@@ -216,7 +161,7 @@ class dong
 
     AX = (int)random(width);
     AY = (int)random(width);
-    Asteroid = 40+(int)(Math.random()*30);
+    Asteroid = 20+(int)(Math.random()*30);
     myCA =(int)(Math.random()*35+100);
     b =(int)(Math.random()*80+150);
   }
@@ -228,13 +173,13 @@ class dong
   }
   void show()
   {
-    fill(myCA, myCA, 250);
+    fill(255, 255, 255);
     ellipse(AX, AY, Asteroid, Asteroid);
   }
   void walk() {
 
     if (AR <= radius*0.515 && AR >= radius *0.5){
-      radius = radius + (int)(90*Asteroid/radius);
+      radius = radius + (int)(50*Asteroid/radius)/2;
       count = count +1;}
      
 
@@ -262,5 +207,4 @@ class dong
       AY = 450;
 }
   }
-}*/
-  
+}
