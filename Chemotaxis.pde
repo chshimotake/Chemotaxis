@@ -125,35 +125,35 @@ class Planets
       myY+=(int)(Math.random()*radius/100);
     }
     */
-    if (myX <= 450 && distR < radius*2 && distR > radius*1.2) {
+    if (myX <= width/2 && distR < radius*2 && distR > radius*1.2) {
       myX = myX + (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX > 450 && distR < radius*2 && distR > radius*1.2) {
+    if (myX > width/2 && distR < radius*2 && distR > radius*1.2) {
       myX = myX - (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX <= 450 && distR < radius*1.2) {
+    if (myX <= width/2 && distR < radius*1.2) {
       myX = myX + (radius*radius*0.005)/(1.7*(distX));
     }
-    if (myX > 450 && distR < radius*1.2) {
+    if (myX > width/2 && distR < radius*1.2) {
       myX = myX - (radius*radius*0.005)/(1.7*(distX));
     }
 
-    if (myY <= 450 && distR < radius*2 && distR > radius*1.2) {
+    if (myY <= width/2 && distR < radius*2 && distR > radius*1.2) {
       myY = myY + (radius*radius*0.005)/(2.5*(distY));
     }
 
-    if (myY > 450 && distR <= radius*2 && distR > radius*1.2) {
+    if (myY > width/2 && distR <= radius*2 && distR > radius*1.2) {
       myY = myY - (radius*radius*0.005)/(2.5*(distY));
     }
-    if (myY <= 450 && distR <= radius*1.2) {
+    if (myY <= width/2 && distR <= radius*1.2) {
       myY = myY + (radius*radius*0.005)/(1.7*(distY));
     }
 
-    if (myY > 450 && distR <= radius*1.2) {
+    if (myY > width/2 && distR <= radius*1.2) {
       myY = myY - (radius*radius*0.005)/(1.7*(distY));
     }
     if (distR <= radius*0.515)
-      myX = myY = 450;
+      myX = myY = width/2;
 
     if (distR <= radius*0.515 && distR >= radius *0.5){
       radius = radius + (int)(145*log(mySize+2.7)/radius);
@@ -181,9 +181,9 @@ class BlackHole
   void show() 
   {
     fill(138,43,226);
-    ellipse(450,450,radius,radius);
+    ellipse(width/2,width/2,radius,radius);
     fill(0);
-    ellipse(450, 450, radius-10, radius-10);
+    ellipse(width/2, width/2, radius-10, radius-10);
     hurricane();
   }
   void hurricane()
@@ -262,35 +262,35 @@ class Dot
       myY+=(int)(Math.random()*radius/100);
     }
     */
-    if (myX <= 450 && distR < radius*2 && distR > radius*1.2) {
+    if (myX <= width/2 && distR < radius*2 && distR > radius*1.2) {
       myX = myX + (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX > 450 && distR < radius*2 && distR > radius*1.2) {
+    if (myX > width/2 && distR < radius*2 && distR > radius*1.2) {
       myX = myX - (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX <= 450 && distR < radius*1.2) {
+    if (myX <= width/2 && distR < radius*1.2) {
       myX = myX + (radius*radius*0.005)/(1.7*(distX));
     }
-    if (myX > 450 && distR < radius*1.2) {
+    if (myX > width/2 && distR < radius*1.2) {
       myX = myX - (radius*radius*0.005)/(1.7*(distX));
     }
 
-    if (myY <= 450 && distR < radius*2 && distR > radius*1.2) {
+    if (myY <= width/2 && distR < radius*2 && distR > radius*1.2) {
       myY = myY + (radius*radius*0.005)/(2.5*(distY));
     }
 
-    if (myY > 450 && distR <= radius*2 && distR > radius*1.2) {
+    if (myY > width/2 && distR <= radius*2 && distR > radius*1.2) {
       myY = myY - (radius*radius*0.005)/(2.5*(distY));
     }
-    if (myY <= 450 && distR <= radius*1.2) {
+    if (myY <= width/2 && distR <= radius*1.2) {
       myY = myY + (radius*radius*0.005)/(1.7*(distY));
     }
 
-    if (myY > 450 && distR <= radius*1.2) {
+    if (myY > width/2 && distR <= radius*1.2) {
       myY = myY - (radius*radius*0.005)/(1.7*(distY));
     }
     if (distR <= radius*0.515)
-      myX = myY = 450;
+      myX = myY = width/2;
 
     if (distR <= radius*0.515 && distR >= radius *0.5){
       radius = radius + (int)(145*log(asteroid+2.7)/radius);
@@ -305,24 +305,24 @@ class Dot
 
 
 
-    if (myX <= 450 && dotR < radius*2.4) {
+    if (myX <= width/2 && dotR < radius*2.4) {
       myX = myX + (radius*radius*0.005)/(4*(myX));
     }
-    if (myX > 450 && dotR < radius*2.4) {
+    if (myX > width/2 && dotR < radius*2.4) {
       myX = myX - (radius*radius*0.005)/(4*(myX));
     }
 
 
-    if (dotY <= 450 && dotR < radius*2.4 ) {
+    if (dotY <= width/2 && dotR < radius*2.4 ) {
       dotY = dotY + (radius*radius*0.005)/(4*(dotY));
     }
 
-    if (dotY > 450 && dotR <= radius*2.4 ) {
+    if (dotY > width/2 && dotR <= radius*2.4 ) {
       dotY = dotY - (radius*radius*0.005)/(4*(dotY));
     }
     
     if (dotR <= radius*0.515){
-      myX = 450;
-      dotY = 450;*/
+      myX = width/2;
+      dotY = width/2;*/
 }
 }
