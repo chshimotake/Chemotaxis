@@ -31,13 +31,13 @@ void draw()
     blackChakra[k].show();
     //shows all the planets
   }
- 
-
-  if (start == 1) {
+  if (start == 1) 
+  {
     for (int i = 0; i < blackChakra.length; i ++)
     {
       blackChakra[i].distance();
       blackChakra[i].walk();
+      blackChakra[i].randWalk();
       //takes the distance of each planet from the center
       //and makes it move
     }
@@ -54,8 +54,20 @@ void draw()
     {
       whiteChakra[i].distance();
       whiteChakra[i].walk();
+      whiteChakra[i].randWalk();
       //takes the distance of each dot from the center
       //and makes it move
+    }
+  }
+  if(start==0)
+  {
+    for (int i = 0; i < blackChakra.length; i ++)
+    {
+      blackChakra[i].randWalk();
+    }
+    for (int i = 0; i < whiteChakra.length; i ++)
+    {
+      whiteChakra[i].randWalk();
     }
   }
 
@@ -78,8 +90,41 @@ class Planets
     myCA =(int)(Math.random()*35+100);
     b =(int)(Math.random()*80+150);
   }
+  void randWalk()
+  {
+    myX=myX+(int)(Math.random()*4-2);
+    myY=myY+(int)(Math.random()*4-2);
+    //myX=myX+(int)(Math.random()*10-5);
+    //myY=myY+(int)(Math.random()*10-5);
+  }
   void walk()
   {
+    /*
+    if(myX<=width/2&&myY<=height/2)
+    //top left
+    {
+      myY+=(int)(Math.random()*radius/50);
+      myX+=(int)(Math.random()*radius/100);
+    }
+    if(myX<=width/2&&myY>=height/2)
+    //bottom left
+    {
+      myY-=(int)(Math.random()*radius/100);
+      myX+=(int)(Math.random()*radius/50);
+    }
+    if(myX>=width/2&&myY>=height/2)
+    //bottom right
+    {
+      myY-=(int)(Math.random()*radius/50);
+      myX-=(int)(Math.random()*radius/100);
+    }
+    if(myX>=width/2&&myY<=height/2)
+    //top right
+    {
+      myX-=(int)(Math.random()*radius/10);
+      myY+=(int)(Math.random()*radius/100);
+    }
+    */
     if (myX <= 450 && distR < radius*2 && distR > radius*1.2) {
       myX = myX + (radius*radius*0.005)/(2.5*(distX));
     }
@@ -160,30 +205,63 @@ void mousePressed() {
 
 class Dot
 {  
-  float asteroid, myCA, dotR, dotX, dotY, distR, distX, distY, b ;
+  float asteroid, myCA, dotR, myX, myY, distR, distX, distY, b ;
   int myColor;
   Dot()
   {
 
-    dotX = (int)random(width);
-    dotY = (int)random(width);
+    myX = (int)random(width);
+    myY = (int)random(width);
     asteroid = (int)(Math.random()*20);
     myCA =(int)(Math.random()*35+100);
     b =(int)(Math.random()*80+150);
   }
 
   void distance() {
-    distR = dist(dotX, dotY, width/2, height/2);
-    distX = dist(dotX, height/2, dotX, dotY);
-    distY = dist(width/2, dotY, dotX, dotY);
+    distR = dist(myX, myY, width/2, height/2);
+    distX = dist(myX, height/2, myX, myY);
+    distY = dist(width/2, myY, myX, myY);
   }
   void show()
   {
     noStroke();
     fill(255, 255,255);//255, 255);
-    ellipse(dotX, dotY, asteroid, asteroid);
+    ellipse(myX, myY, asteroid, asteroid);
+  }
+  void randWalk()
+  {
+    myX=myX+(int)(Math.random()*4-2);
+    myY=myY+(int)(Math.random()*4-2);
+    //myX=myX+(int)(Math.random()*10-5);
+    //myY=myY+(int)(Math.random()*10-5);
   }
   void walk() {
+    /*
+    if(myX<=width/2&&myY<=height/2)
+    //top left
+    {
+      myY+=(int)(Math.random()*radius/50);
+      myX+=(int)(Math.random()*radius/100);
+    }
+    if(myX<=width/2&&myY>=height/2)
+    //bottom left
+    {
+      myY-=(int)(Math.random()*radius/100);
+      myX+=(int)(Math.random()*radius/50);
+    }
+    if(myX>=width/2&&myY>=height/2)
+    //bottom right
+    {
+      myY-=(int)(Math.random()*radius/50);
+      myX-=(int)(Math.random()*radius/100);
+    }
+    if(myX>=width/2&&myY<=height/2)
+    //top right
+    {
+      myX-=(int)(Math.random()*radius/10);
+      myY+=(int)(Math.random()*radius/100);
+    }
+    */
     if (myX <= 450 && distR < radius*2 && distR > radius*1.2) {
       myX = myX + (radius*radius*0.005)/(2.5*(distX));
     }
@@ -215,7 +293,8 @@ class Dot
       myX = myY = 450;
 
     if (distR <= radius*0.515 && distR >= radius *0.5){
-      radius = radius + (int)(145*log(mySize+2.7)/radius);
+      radius = radius + (int)(145*log(asteroid+2.7)/radius);
+      //radius = radius + (int)(145*log(mySize+2.7)/radius);
       count = count + 1;
     }
     /*if (dotR <= radius*0.515 && dotR >= radius *0.5){
@@ -226,11 +305,11 @@ class Dot
 
 
 
-    if (dotX <= 450 && dotR < radius*2.4) {
-      dotX = dotX + (radius*radius*0.005)/(4*(dotX));
+    if (myX <= 450 && dotR < radius*2.4) {
+      myX = myX + (radius*radius*0.005)/(4*(myX));
     }
-    if (dotX > 450 && dotR < radius*2.4) {
-      dotX = dotX - (radius*radius*0.005)/(4*(dotX));
+    if (myX > 450 && dotR < radius*2.4) {
+      myX = myX - (radius*radius*0.005)/(4*(myX));
     }
 
 
@@ -243,7 +322,7 @@ class Dot
     }
     
     if (dotR <= radius*0.515){
-      dotX = 450;
+      myX = 450;
       dotY = 450;*/
 }
 }
