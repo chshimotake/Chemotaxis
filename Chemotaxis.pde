@@ -9,6 +9,7 @@ int black = white*4;
 PImage naruto;
 void setup()
 {
+  size(900, 900);
   blackChakra = new Planets[black];
   whiteChakra = new Dot[white];
   for (int i=0; i < blackChakra.length; i++)
@@ -17,7 +18,6 @@ void setup()
   for (int i=0; i < whiteChakra.length; i++)
     whiteChakra[i] = new Dot();
   //creates the small white dots
-  size(900, 900);
   naruto=loadImage("Bijuudama.jpg");
 }
 
@@ -78,22 +78,22 @@ void draw()
 
 class Planets
 {
-  float myX, myY, mySize, distR;
+  float planetX, planetY, planetSize, distR;
   float distX, distY, asteroid, myCA, b ;
   int myColor;
   Planets()
   {
-    myX = (int)random(width);
-    myY = (int)random(height);
-    mySize = (int)(Math.random()*20)+20;
+    planetX = (int)random(width);
+    planetY = (int)random(height);
+    planetSize = (int)(Math.random()*20)+20;
     asteroid = 40+(int)(Math.random()*30);
     myCA =(int)(Math.random()*35+100);
     b =(int)(Math.random()*80+150);
   }
   void randWalk()
   {
-    myX=myX+(int)(Math.random()*4-2);
-    myY=myY+(int)(Math.random()*4-2);
+    planetX=planetX+(int)(Math.random()*4-2);
+    planetY=planetY+(int)(Math.random()*4-2);
     //myX=myX+(int)(Math.random()*10-5);
     //myY=myY+(int)(Math.random()*10-5);
   }
@@ -125,50 +125,50 @@ class Planets
       myY+=(int)(Math.random()*radius/100);
     }
     */
-    if (myX <= width/2 && distR < radius*2 && distR > radius*1.2) {
-      myX = myX + (radius*radius*0.005)/(2.5*(distX));
+    if (planetX <= width/2 && distR < radius*2 && distR > radius*1.2) {
+      planetX = planetX + (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX > width/2 && distR < radius*2 && distR > radius*1.2) {
-      myX = myX - (radius*radius*0.005)/(2.5*(distX));
+    if (planetX > width/2 && distR < radius*2 && distR > radius*1.2) {
+      planetX = planetX - (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX <= width/2 && distR < radius*1.2) {
-      myX = myX + (radius*radius*0.005)/(1.7*(distX));
+    if (planetX <= width/2 && distR < radius*1.2) {
+      planetX = planetX + (radius*radius*0.005)/(1.7*(distX));
     }
-    if (myX > width/2 && distR < radius*1.2) {
-      myX = myX - (radius*radius*0.005)/(1.7*(distX));
-    }
-
-    if (myY <= width/2 && distR < radius*2 && distR > radius*1.2) {
-      myY = myY + (radius*radius*0.005)/(2.5*(distY));
+    if (planetX > width/2 && distR < radius*1.2) {
+      planetX = planetX - (radius*radius*0.005)/(1.7*(distX));
     }
 
-    if (myY > width/2 && distR <= radius*2 && distR > radius*1.2) {
-      myY = myY - (radius*radius*0.005)/(2.5*(distY));
-    }
-    if (myY <= width/2 && distR <= radius*1.2) {
-      myY = myY + (radius*radius*0.005)/(1.7*(distY));
+    if (planetY <= width/2 && distR < radius*2 && distR > radius*1.2) {
+      planetY = planetY + (radius*radius*0.005)/(2.5*(distY));
     }
 
-    if (myY > width/2 && distR <= radius*1.2) {
-      myY = myY - (radius*radius*0.005)/(1.7*(distY));
+    if (planetY > width/2 && distR <= radius*2 && distR > radius*1.2) {
+      planetY = planetY - (radius*radius*0.005)/(2.5*(distY));
+    }
+    if (planetY <= width/2 && distR <= radius*1.2) {
+      planetY = planetY + (radius*radius*0.005)/(1.7*(distY));
+    }
+
+    if (planetY > width/2 && distR <= radius*1.2) {
+      planetY = planetY - (radius*radius*0.005)/(1.7*(distY));
     }
     if (distR <= radius*0.515)
-      myX = myY = width/2;
+      planetX = planetY = width/2;
 
     if (distR <= radius*0.515 && distR >= radius *0.5){
-      radius = radius + (int)(145*log(mySize+2.7)/radius);
+      radius = radius + (int)(145*log(planetSize+2.7)/radius);
       count = count + 1;
     }
   }
   void show()
   {
     fill(0,0,0);
-    ellipse(myX, myY, mySize, mySize);
+    ellipse(planetX, planetY, planetSize, planetSize);
   }
   void distance() {
-    distR = dist(myX, myY, width/2, height/2);
-    distX = dist(myX, height/2, myX, myY);
-    distY = dist(width/2, myY, myX, myY);
+    distR = dist(planetX, planetY, width/2, height/2);
+    distX = dist(planetX, height/2, planetX, planetY);
+    distY = dist(width/2, planetY, planetX, planetY);
   }
 }
 
@@ -205,33 +205,33 @@ void mousePressed() {
 
 class Dot
 {  
-  float asteroid, myCA, dotR, myX, myY, distR, distX, distY, b ;
+  float asteroid, myCA, dotR, dotX, dotY, distR, distX, distY, b ;
   int myColor;
   Dot()
   {
 
-    myX = (int)random(width);
-    myY = (int)random(width);
+    dotX = (int)random(width);
+    dotY = (int)random(width);
     asteroid = (int)(Math.random()*20);
     myCA =(int)(Math.random()*35+100);
     b =(int)(Math.random()*80+150);
   }
 
   void distance() {
-    distR = dist(myX, myY, width/2, height/2);
-    distX = dist(myX, height/2, myX, myY);
-    distY = dist(width/2, myY, myX, myY);
+    distR = dist(dotX, dotY, width/2, height/2);
+    distX = dist(dotX, height/2, dotX, dotY);
+    distY = dist(width/2, dotY, dotX, dotY);
   }
   void show()
   {
     noStroke();
     fill(255, 255,255);//255, 255);
-    ellipse(myX, myY, asteroid, asteroid);
+    ellipse(dotX, dotY, asteroid, asteroid);
   }
   void randWalk()
   {
-    myX=myX+(int)(Math.random()*4-2);
-    myY=myY+(int)(Math.random()*4-2);
+    dotX=dotX+(int)(Math.random()*4-2);
+    dotY=dotY+(int)(Math.random()*4-2);
     //myX=myX+(int)(Math.random()*10-5);
     //myY=myY+(int)(Math.random()*10-5);
   }
@@ -262,35 +262,35 @@ class Dot
       myY+=(int)(Math.random()*radius/100);
     }
     */
-    if (myX <= width/2 && distR < radius*2 && distR > radius*1.2) {
-      myX = myX + (radius*radius*0.005)/(2.5*(distX));
+    if (dotX <= width/2 && distR < radius*2 && distR > radius*1.2) {
+      dotX = dotX + (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX > width/2 && distR < radius*2 && distR > radius*1.2) {
-      myX = myX - (radius*radius*0.005)/(2.5*(distX));
+    if (dotX > width/2 && distR < radius*2 && distR > radius*1.2) {
+      dotX = dotX - (radius*radius*0.005)/(2.5*(distX));
     }
-    if (myX <= width/2 && distR < radius*1.2) {
-      myX = myX + (radius*radius*0.005)/(1.7*(distX));
+    if (dotX <= width/2 && distR < radius*1.2) {
+      dotX = dotX + (radius*radius*0.005)/(1.7*(distX));
     }
-    if (myX > width/2 && distR < radius*1.2) {
-      myX = myX - (radius*radius*0.005)/(1.7*(distX));
-    }
-
-    if (myY <= width/2 && distR < radius*2 && distR > radius*1.2) {
-      myY = myY + (radius*radius*0.005)/(2.5*(distY));
+    if (dotX > width/2 && distR < radius*1.2) {
+      dotX = dotX - (radius*radius*0.005)/(1.7*(distX));
     }
 
-    if (myY > width/2 && distR <= radius*2 && distR > radius*1.2) {
-      myY = myY - (radius*radius*0.005)/(2.5*(distY));
-    }
-    if (myY <= width/2 && distR <= radius*1.2) {
-      myY = myY + (radius*radius*0.005)/(1.7*(distY));
+    if (dotY <= width/2 && distR < radius*2 && distR > radius*1.2) {
+      dotY = dotY + (radius*radius*0.005)/(2.5*(distY));
     }
 
-    if (myY > width/2 && distR <= radius*1.2) {
-      myY = myY - (radius*radius*0.005)/(1.7*(distY));
+    if (dotY > width/2 && distR <= radius*2 && distR > radius*1.2) {
+      dotY = dotY - (radius*radius*0.005)/(2.5*(distY));
+    }
+    if (dotY <= width/2 && distR <= radius*1.2) {
+      dotY = dotY + (radius*radius*0.005)/(1.7*(distY));
+    }
+
+    if (dotY > width/2 && distR <= radius*1.2) {
+      dotY = dotY - (radius*radius*0.005)/(1.7*(distY));
     }
     if (distR <= radius*0.515)
-      myX = myY = width/2;
+      dotX = dotY = width/2;
 
     if (distR <= radius*0.515 && distR >= radius *0.5){
       radius = radius + (int)(145*log(asteroid+2.7)/radius);
